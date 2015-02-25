@@ -69,31 +69,6 @@ public class HashMap
     }
 
     /**
-     * Metodo para comprobar si una clave ya existe en el hashmap
-     * @param clave La clave a comprobar si ya existe
-     * @return La celdilla si la encuentra, sino devolvera null
-     */
-    private Celdilla comprobarClave(String clave)
-    {
-        // Creamos una boolean y un indice, asi como la celdilla a devolver
-        boolean encontrada = false;
-        int indice = 0;
-        Celdilla devolver = null;
-        // Recorremos la coleccion, si existe guardamos la celdilla correspondiente
-        // a esa clave y cambiamos el valor de la boolean
-        while (indice < diccionario.size() && !(encontrada))
-        {
-            Celdilla temp = diccionario.get(indice);
-            if( clave == temp.getClave())
-            {
-                devolver = temp;
-                encontrada = true;
-            }
-        }
-        return devolver;
-    }
-
-    /**
      * Metodo que comprueba si el mapa contiene o no elementos
      * @return True si esta vacia, false si contiene elementos
      */
@@ -114,7 +89,7 @@ public class HashMap
     /**
      * Metodo que elimina el elemento de la clave dada
      * @param clave La clave del elemento a eliminar
-     * @return Su valor si existia la clave, -1 si no
+     * @return Su valor si existia la clave, -1 sino
      */
     public int remove(String clave)
     {
@@ -159,5 +134,54 @@ public class HashMap
         }
         return retornar;
     }
-
+    
+    /**
+     * Metodo para comprobar si un valor ya existe en el hashmap
+     * @param valor El valor a comprobar si ya existe
+     * @return True si el valor existe, false si no
+     */
+    public boolean containsValue(int valor)
+    {
+         // Creamos una boolean y un indice
+        boolean encontrada = false;
+        int indice = 0;
+        // Recorremos la coleccion, si el valor existe cambiamos el valor de la boolean
+        while (indice < diccionario.size() && !(encontrada))
+        {
+            Celdilla temp = diccionario.get(indice);
+            if(valor == temp.getValor())
+            {
+                encontrada = true;
+            }
+            indice++;
+        }
+        return encontrada;
+    }
+    
+    /**
+     * Metodo para comprobar si una clave ya existe en el hashmap
+     * @param clave La clave a comprobar si ya existe
+     * @return La celdilla si la encuentra, sino devolvera null
+     */
+    private Celdilla comprobarClave(String clave)
+    {
+        // Creamos una boolean y un indice, asi como la celdilla a devolver
+        boolean encontrada = false;
+        int indice = 0;
+        Celdilla devolver = null;
+        // Recorremos la coleccion, si existe guardamos la celdilla correspondiente
+        // a esa clave y cambiamos el valor de la boolean
+        while (indice < diccionario.size() && !(encontrada))
+        {
+            Celdilla temp = diccionario.get(indice);
+            if( clave == temp.getClave())
+            {
+                devolver = temp;
+                encontrada = true;
+            }
+            indice++;
+        }
+        return devolver;
+    }
+    
 }
